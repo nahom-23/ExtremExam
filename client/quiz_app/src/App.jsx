@@ -1,9 +1,10 @@
 import { useState } from "react";
+import Home from "./pages/Home";
 
 function App() {
   return (
     <>
-      <h1 className="text-6xl font-medium underline text-red-900">Hello!</h1>
+      <Home />
     </>
   );
 }
