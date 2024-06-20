@@ -2,24 +2,25 @@ import React from "react";
 import Header from "../component/Header";
 import Hero from "../assets/Hero.png";
 import Statics from "../component/Statics";
+import Listpage from "./Listpage";
 function Home() {
   return (
     <>
       <Header />
-      <div>
-        <div className="flex max-w-6xl mx-auto py-9 animate-my-animation">
-          <div className="w-[550px] mt-14">
-            <h1 className="text-7xl text-green font-bold leading-relax ">
+      <div className="max-w-6xl mx-auto py-9">
+        <div className="flex ">
+          <div className="w-[550px] mt-14 animate-my-text">
+            <h1 className="font-bold text-7xl text-green leading-relax ">
               Take Online Test & Unlock Your Future
             </h1>
             <p className="py-6 text-[24px] text-header">
               Discover Your Path to Success Now!
             </p>
-            <button className="bg-green text-white py-4 px-12 rounded font-bold text-2xl">
+            <button className="px-12 py-4 text-2xl font-bold text-white rounded bg-green">
               Register
             </button>
           </div>
-          <div>
+          <div className="animate-my-images">
             <img
               className="w-[600px] h-[550px] "
               src={Hero}
@@ -27,8 +28,9 @@ function Home() {
             />
           </div>
         </div>
+        <Statics />
       </div>
-      <Statics />
+      <Listpage />
     </>
   );
 }

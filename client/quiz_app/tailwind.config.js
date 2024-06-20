@@ -4,12 +4,23 @@ export default {
   theme: {
     extend: {
       animation: {
-        "my-animation": "my-animation 1s linear",
+        "my-text": "my-text 1s linear",
+        "my-images": "my-images 1s linear",
       },
       keyframes: {
-        "my-animation": {
+        "my-text": {
           "0%": {
             transform: "translateX(-100px)",
+            opacity: "0",
+          },
+          "100%": {
+            transform: "translateX(0px)",
+            opacity: "1",
+          },
+        },
+        "my-images": {
+          "0%": {
+            transform: "translateX(100px)",
             opacity: "0",
           },
           "100%": {
