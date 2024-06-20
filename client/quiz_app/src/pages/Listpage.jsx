@@ -6,7 +6,7 @@ function Listpage() {
     <>
       <div className="bg-green">
         <div className="max-w-6xl mx-auto py-9">
-          <h1 className="text-4xl text-white font-bold py-8">Exist Tests</h1>
+          <h1 className="py-8 text-5xl font-bold text-white">Existed Tests</h1>
           <Testcard />
         </div>
       </div>

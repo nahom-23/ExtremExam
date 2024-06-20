@@ -1,12 +1,13 @@
 import React from "react";
-import Header from "../component/Header";
 import Hero from "../assets/Hero.png";
 import Statics from "../component/Statics";
 import Listpage from "./Listpage";
+import Contactus from "./Contactus";
+import Footer from "./Footer";
+import { Link } from "react-router-dom";
 function Home() {
   return (
     <>
-      <Header />
       <div className="max-w-6xl mx-auto py-9">
         <div className="flex ">
           <div className="w-[550px] mt-14 animate-my-text">
@@ -17,7 +18,7 @@ function Home() {
               Discover Your Path to Success Now!
             </p>
             <button className="px-12 py-4 text-2xl font-bold text-white rounded bg-green">
-              Register
+              <Link to="/signup">Register</Link>
             </button>
           </div>
           <div className="animate-my-images">
@@ -31,6 +32,8 @@ function Home() {
         <Statics />
       </div>
       <Listpage />
+      <Contactus />
+      <Footer />
     </>
   );
 }
