@@ -5,6 +5,8 @@ import Header from "./component/Header";
 import Testcard from "./component/Testcard";
 import Contactus from "./pages/Contactus";
 import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+import Listpage from "./pages/Listpage";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
           <Route path="/tests" element={<Testcard />} />
           <Route path="/contact" element={<Contactus />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/listpages" element={<Listpage />} />
         </Routes>
       </Router>
     </>

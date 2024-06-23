@@ -38,7 +38,7 @@ export default {
         yellow: "#ffc82c",
         "gray-dark": "#273444",
         gray: "#8492a6",
-        "gray-light": "#d3dce6",
+        gray: "#696F79",
         blueblack: "#131B42",
       },
       fontFamily: {
