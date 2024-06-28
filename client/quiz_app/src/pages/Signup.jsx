@@ -82,7 +82,7 @@ const Signup = ({ isOpen, onClose, toggleForm }) => {
             <input
               id="password"
               type="password"
-              className={`w-full p-3 mt-2 border border-[#DADADA] focus:outline-none border-2 rounded placeholder-green ${
+              className={`w-full p-3 mt-2 border-[#DADADA] focus:outline-none border-2 rounded placeholder-green ${
                 errors.password && "border-red-600 "
               }`}
               placeholder="Password"
@@ -104,7 +104,7 @@ const Signup = ({ isOpen, onClose, toggleForm }) => {
             <p className="mx-3 text-center">Or</p>
           </div>
           <button
-            type="submit"
+            type="button"
             className="flex items-center justify-center w-full gap-3 p-3 mt-4 bg-white rounded"
           >
             <FcGoogle /> Continue with Google
@@ -116,7 +116,7 @@ const Signup = ({ isOpen, onClose, toggleForm }) => {
             </span>
           </p>
           <button
-            type="submit"
+            type="button"
             className="absolute text-2xl text-green right-4 top-4"
             onClick={onClose}
           >
