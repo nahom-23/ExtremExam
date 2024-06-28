@@ -29,8 +29,7 @@ const Signup = ({ isOpen, onClose, toggleForm }) => {
     resolver: yupResolver(validationSchema),
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
     // Add your signup logic here
   };
 

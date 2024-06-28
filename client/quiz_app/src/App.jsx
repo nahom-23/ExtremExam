@@ -7,21 +7,24 @@ import Contactus from "./pages/Contactus";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Listpage from "./pages/Listpage";
+import { AuthContextProvider } from "./context/AuthContext";
 
 function App() {
   return (
     <>
-      <Router>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/tests" element={<Testcard />} />
-          <Route path="/contact" element={<Contactus />} />
-          <Route path="/ " element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/listpages" element={<Listpage />} />
-        </Routes>
-      </Router>
+      <AuthContextProvider>
+        <Router>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/tests" element={<Testcard />} />
+            <Route path="/contact" element={<Contactus />} />
+            <Route path="/ " element={<Signup />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/listpages" element={<Listpage />} />
+          </Routes>
+        </Router>
+      </AuthContextProvider>
     </>
   );
 }
