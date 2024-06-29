@@ -8,6 +8,7 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Listpage from "./pages/Listpage";
 import { AuthContextProvider } from "./context/AuthContext";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/listpages" element={<Listpage />} />
           </Routes>
         </Router>
+        <ToastContainer />
       </AuthContextProvider>
     </>
   );

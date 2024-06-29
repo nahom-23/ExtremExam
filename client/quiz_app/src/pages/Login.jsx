@@ -5,10 +5,11 @@ import { FcGoogle } from "react-icons/fc";
 import { object, string } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { useLogin } from "../hooks/useLogin";
 
 const Login = ({ isOpen, onClose, toggleForm }) => {
   if (!isOpen) return null;
-
+  const { login, error, isLoading } = useLogin();
   const validationSchema = object().shape({
     email: string()
       .required("Email is required")
@@ -26,8 +27,9 @@ const Login = ({ isOpen, onClose, toggleForm }) => {
     resolver: yupResolver(validationSchema),
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    const { email, password } = data;
+    await login(email, password);
   };
 
   return (
@@ -56,6 +58,7 @@ const Login = ({ isOpen, onClose, toggleForm }) => {
                   {errors.email.message}
                 </p>
               )}
+              {error && <div>{error}</div>}
             </div>
             <div className="mb-5">
               <label className="block text-sm text-gray">Enter password</label>
@@ -73,8 +76,11 @@ const Login = ({ isOpen, onClose, toggleForm }) => {
                 </p>
               )}
               <button
+                disabled={isLoading}
                 type="submit"
-                className="w-full p-3 mt-4 text-white rounded bg-green"
+                className={`w-full p-3 mt-4 text-white rounded cursor-pointer bg-green ${
+                  isLoading && "bg-slate-600"
+                }`}
               >
                 Login
               </button>

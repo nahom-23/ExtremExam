@@ -5,10 +5,13 @@ import { FcGoogle } from "react-icons/fc";
 import { object, string } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { useSignup } from "../hooks/useSignup";
+import { ToastContainer, toast } from "react-toastify";
 
 const Signup = ({ isOpen, onClose, toggleForm }) => {
   if (!isOpen) return null;
 
+  const { signup, isLoading, error } = useSignup();
   const validationSchema = object().shape({
     username: string()
       .required("Username is required")
@@ -30,7 +33,8 @@ const Signup = ({ isOpen, onClose, toggleForm }) => {
   });
 
   const onSubmit = async (data) => {
-    // Add your signup logic here
+    const { username, email, password } = data;
+    await signup(username, email, password);
   };
 
   return (
@@ -62,7 +66,7 @@ const Signup = ({ isOpen, onClose, toggleForm }) => {
             <input
               id="email"
               type="email"
-              className={`w-full p-3 mt-2 border border-[#DADADA] border-2 focus:outline-none rounded placeholder-green ${
+              className={`w-full p-3 mt-2 border-[#DADADA] border-2 focus:outline-none rounded placeholder-green ${
                 errors.email && "border-red-600 "
               }`}
               placeholder="Email address"
@@ -73,6 +77,7 @@ const Signup = ({ isOpen, onClose, toggleForm }) => {
                 {errors.email.message}
               </p>
             )}
+            {error && <div>{error}</div>}
           </div>
           <div className="mb-5">
             <label className="block text-sm text-gray" htmlFor="password">
@@ -95,7 +100,10 @@ const Signup = ({ isOpen, onClose, toggleForm }) => {
           </div>
           <button
             type="submit"
-            className="w-full p-3 mt-4 text-white rounded bg-green"
+            disabled={isLoading}
+            className={`w-full p-3 mt-4 text-white rounded cursor-pointer bg-green ${
+              isLoading && "bg-slate-600"
+            }`}
           >
             Sign Up
           </button>
