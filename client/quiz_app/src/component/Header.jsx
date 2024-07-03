@@ -2,8 +2,9 @@ import React from "react";
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import Register from "./Register";
-
+import { useAuthContext } from "../hooks/useAuthContext";
 export default function Header() {
+  const { user } = useAuthContext();
   return (
     <>
       <div className="flex items-center justify-between py-8 mx-10 ">
@@ -23,11 +24,15 @@ export default function Header() {
             </li>
           </ul>
         </div>
-        <Register
-          buttonTitle="Sign up"
-          buttonClassName="px-6 py-2 text-sm bg-white  font-bold uppercase transition ease-in-out delay-150 border rounded text-green  cursor-pointer border-header hover:bg-green hover:text-white"
-          buttonStyle={{ color: "black" }}
-        />
+        {user ? (
+          <div>log out</div>
+        ) : (
+          <Register
+            buttonTitle="Sign up"
+            buttonClassName="px-6 py-2 text-sm bg-white  font-bold uppercase transition ease-in-out delay-150 border rounded text-green  cursor-pointer border-header hover:bg-green hover:text-white"
+            buttonStyle={{ color: "black" }}
+          />
+        )}
       </div>
     </>
   );

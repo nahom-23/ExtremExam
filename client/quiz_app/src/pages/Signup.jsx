@@ -6,11 +6,12 @@ import { object, string } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useSignup } from "../hooks/useSignup";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
-const Signup = ({ isOpen, onClose, toggleForm }) => {
-  if (!isOpen) return null;
-
+const Signup = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const { signup, isLoading, error } = useSignup();
   const validationSchema = object().shape({
     username: string()
@@ -31,7 +32,9 @@ const Signup = ({ isOpen, onClose, toggleForm }) => {
   } = useForm({
     resolver: yupResolver(validationSchema),
   });
-
+  const handleCloseModal = () => {
+    navigate(location.state?.from || "/");
+  };
   const onSubmit = async (data) => {
     const { username, email, password } = data;
     await signup(username, email, password);
@@ -118,14 +121,14 @@ const Signup = ({ isOpen, onClose, toggleForm }) => {
           </button>
           <p className="mt-4 text-center text-gray">
             Already have an account?{" "}
-            <span className="cursor-pointer text-green" onClick={toggleForm}>
-              Login
+            <span className="cursor-pointer text-green">
+              <Link to="/login">Login</Link>
             </span>
           </p>
           <button
             type="button"
             className="absolute text-2xl text-green right-4 top-4"
-            onClick={onClose}
+            onClick={handleCloseModal}
           >
             <IoMdCloseCircle />
           </button>

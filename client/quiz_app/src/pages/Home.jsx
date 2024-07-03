@@ -5,9 +5,11 @@ import Listpage from "./Listpage";
 import Contactus from "./Contactus";
 import Footer from "./Footer";
 import Register from "../component/Register";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 function Home() {
   // true for Login, false for Signup
+  const { user } = useAuthContext();
 
   return (
     <>
@@ -20,7 +22,11 @@ function Home() {
             <p className="py-6 text-[24px] text-header">
               Discover Your Path to Success Now!
             </p>
-            <Register buttonTitle="Register" />
+            {user ? (
+              <div> see courses</div>
+            ) : (
+              <Register buttonTitle="Register" />
+            )}
           </div>
           <div className="animate-my-images">
             <img
