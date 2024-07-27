@@ -2,6 +2,7 @@ import { json } from "react-router-dom";
 import { useAuthContext } from "./useAuthContext";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 export const useSignup = () => {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
@@ -26,7 +27,7 @@ export const useSignup = () => {
       localStorage.setItem("user", JSON.stringify(json));
       dispatch({ type: "LOGIN", payload: json });
       setIsLoading(false);
-      navigate("/login");
+      navigate("/");
     }
   };
 

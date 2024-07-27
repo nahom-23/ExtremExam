@@ -3,8 +3,13 @@ import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import Register from "./Register";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { useLogout } from "../hooks/useLogout";
+
 export default function Header() {
+
   const { user } = useAuthContext();
+  const { logout } = useLogout();
+
   return (
     <>
       <div className="flex items-center justify-between py-8 mx-10 ">
@@ -25,7 +30,9 @@ export default function Header() {
           </ul>
         </div>
         {user ? (
-          <div>log out</div>
+          <div>
+            <button onClick={logout}>log out</button>
+          </div>
         ) : (
           <Register
             buttonTitle="Sign up"

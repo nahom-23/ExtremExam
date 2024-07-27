@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../assets/logo.png";
 import { FaFacebookF, FaXTwitter, FaLinkedinIn } from "react-icons/fa6";
+
 function Footer() {
   return (
     <>

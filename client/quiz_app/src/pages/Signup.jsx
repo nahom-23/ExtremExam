@@ -7,7 +7,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useSignup } from "../hooks/useSignup";
 import { useNavigate, useLocation, Link } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
 
 const Signup = () => {
   const location = useLocation();

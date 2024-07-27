@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+
   const navigate = useNavigate();
   const { login, error, isLoading } = useLogin();
   const validationSchema = object().shape({
@@ -28,6 +29,7 @@ const Login = () => {
   } = useForm({
     resolver: yupResolver(validationSchema),
   });
+  
   const handleCloseModal = () => {
     navigate(location.state?.from || "/");
   };
