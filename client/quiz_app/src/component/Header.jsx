@@ -6,7 +6,6 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import { useLogout } from "../hooks/useLogout";
 
 export default function Header() {
-
   const { user } = useAuthContext();
   const { logout } = useLogout();
 

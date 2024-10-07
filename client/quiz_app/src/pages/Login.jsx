@@ -10,7 +10,6 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-
   const navigate = useNavigate();
   const { login, error, isLoading } = useLogin();
   const validationSchema = object().shape({
@@ -29,9 +28,12 @@ const Login = () => {
   } = useForm({
     resolver: yupResolver(validationSchema),
   });
-  
+
   const handleCloseModal = () => {
     navigate(location.state?.from || "/");
+  };
+  const handleGoogleLogin = () => {
+    window.location.href = "/auth/google";
   };
   const onSubmit = async (data) => {
     const { email, password } = data;
@@ -95,8 +97,9 @@ const Login = () => {
                 <p className="mx-3 text-center">Or</p>
               </div>
               <button
-                type="submit"
+                type="button"
                 className="flex items-center justify-center w-full gap-3 p-3 mt-4 bg-white rounded"
+                onClick={handleGoogleLogin}
               >
                 <FcGoogle /> Continue with Google
               </button>

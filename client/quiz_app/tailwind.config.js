@@ -35,6 +35,7 @@ export default {
         pink: "#ff49db",
         lightbrown: "#FFF2E6",
         green: "#1D4645",
+        lightgreen: "#245856",
         yellow: "#ffc82c",
         "gray-dark": "#273444",
         gray: "#8492a6",

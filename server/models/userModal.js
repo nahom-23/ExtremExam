@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const Schema = mongoose.Schema;
 const validator = require("validator");
-
+const UserRole = require("./UserRole");
 const userSchema = new Schema({
   name: {
     type: String,
@@ -15,7 +15,15 @@ const userSchema = new Schema({
   },
   password: {
     type: String,
-    required: true,
+  },
+  googleId: {
+    type: String,
+    required: false,
+  },
+  role: {
+    type: String,
+    enum: [UserRole.Admin, UserRole.Students],
+    default: UserRole.Students,
   },
 });
 

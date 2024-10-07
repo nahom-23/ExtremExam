@@ -1,21 +1,22 @@
 const mongoose = require("mongoose");
+const Category = require("./Category");
+const Exams = require("./Exams");
 const Schema = mongoose.Schema;
 const QuestionSchema = new Schema({
-  catagroy: {},
+  category: {
+    type: Schema.Types.ObjectId,
+    required: true,
+    ref: "Category",
+  },
   question: {
-    type: string,
+    type: String,
     required: true,
   },
   answer: {
-    type: string,
+    type: String,
     required: true,
   },
-  choice: [string],
-  allottedTime: {
-    type: Number,
-    required: true,
-    default: 60,
-  },
+  choice: [String],
 });
 
-module.exports = mongoose.model("question", QuestionSchema);
+module.exports = mongoose.model("Question", QuestionSchema);

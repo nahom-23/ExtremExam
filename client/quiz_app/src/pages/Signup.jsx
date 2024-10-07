@@ -34,6 +34,9 @@ const Signup = () => {
   const handleCloseModal = () => {
     navigate(location.state?.from || "/");
   };
+  const handleGoogleLogin = () => {
+    window.location.href = "/auth/google";
+  };
   const onSubmit = async (data) => {
     const { username, email, password } = data;
     await signup(username, email, password);
@@ -115,6 +118,7 @@ const Signup = () => {
           <button
             type="button"
             className="flex items-center justify-center w-full gap-3 p-3 mt-4 bg-white rounded"
+            onClick={handleGoogleLogin}
           >
             <FcGoogle /> Continue with Google
           </button>
