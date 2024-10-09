@@ -5,9 +5,10 @@ const isAdmin = require("../../middleware/isAdmin");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
 const { promise } = require("bcrypt/promises");
-
+const upload = require("../../middleware/uploadMiddleware");
 router.post(
   "/api/category",
+  upload.single("photo"),
   [
     body("name")
       .notEmpty()
@@ -38,9 +39,9 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    const { name, description } = req.body;
+    const { name, description, detail } = req.body;
 
-    const newCategory = new Category({ name, description });
+    const newCategory = new Category({ name, description, photo, detail });
     console.log(newCategory);
 
     try {

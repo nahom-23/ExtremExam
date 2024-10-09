@@ -12,7 +12,7 @@ const AdminPage = () => {
   return (
     <div className="flex min-h-screen">
       {/* Sidebar */}
-      <div className="flex flex-col w-1/4 text-white bg-green">
+      <aside className="flex flex-col w-1/4 text-white bg-green">
         <div className="w-full m-6 mb-6 ">
           <img src={logo} alt="Logo" className="w-56 mb-4" />
         </div>
@@ -66,16 +66,16 @@ const AdminPage = () => {
             Log Out
           </button>
         </div>
-      </div>
+      </aside>
 
       {/* Main Content */}
-      <div className="flex-grow p-12 bg-white">
+      <section className="flex-grow p-12 bg-white">
         {activeSection === "category" && <CategoryForm />}
         {activeSection === "questions" && <QuestionForm />}
         {activeSection === "report" && <TestReport />}
         {activeSection === "exam" && <Exam />}
         {activeSection === "test" && <CreateTest />}
-      </div>
+      </section>
     </div>
   );
 };

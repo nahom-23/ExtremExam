@@ -9,5 +9,13 @@ const CategorySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  photo: {
+    type: String,
+    required: true,
+  },
+  detail: {
+    type: String,
+    required: true,
+  },
 });
 module.exports = mongoose.model("Category", CategorySchema);
