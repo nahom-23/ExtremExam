@@ -61,17 +61,13 @@ const CategoryForm = () => {
     setFormError({});
 
     const data = new FormData();
-    data.append("img", photo);
-    console.log(data);
-    const post = {
-      name,
-      description,
-      photo: data,
-      detail,
-    };
+    data.append("name", name);
+    data.append("description", description);
+    data.append("detail", detail);
+    data.append("photo", photo);
 
     try {
-      const res = await axios.post("/api/category", post);
+      const res = await axios.post("/api/category", data);
       console.log(res);
       fetchCategories(); // Fetch the updated list after adding a new category
       setOpen(!open);
@@ -157,6 +153,7 @@ const CategoryForm = () => {
               <input
                 type="file"
                 name="photo"
+                accept="image/*"
                 onChange={handlePhoto}
                 className="block p-2 mt-1 border border-gray-300 rounded-md"
               />
