@@ -31,7 +31,7 @@ function Testcard() {
               {item.name}
             </h1>
 
-            <p className="text-xl text-gray">{item.detail}</p>
+            <p className="text-lg w-[90%] text-gray">{item.detail}</p>
           </div>
         ))}
       </div>
