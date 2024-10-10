@@ -16,20 +16,25 @@ function Testcard() {
   }, []);
   return (
     <>
-      <Link to={"/test"}>
-        <div className="flex flex-wrap max-w-6xl gap-12 mx-auto">
-          {category.map((item, id) => (
-            <div
-              key={id}
-              className="flex-1 min-w-[300px] max-w-[350px] h-[320px] bg-lightbrown rounded-2xl p-4"
-            >
-              <h1>{item.name}</h1>
+      <div className="flex flex-wrap max-w-6xl gap-12 mx-auto my-8">
+        {category.map((item, id) => (
+          <div
+            key={id}
+            className="flex-1 min-w-[300px] max-w-[350px] h-[320px] bg-lightbrown rounded-2xl p-4"
+          >
+            <img
+              src={item.photo}
+              className="w-[120px] h-[120px] rounded-full mb-4"
+              alt="category image"
+            />
+            <h1 className="mb-1 ml-2 text-2xl font-bold text-green">
+              {item.name}
+            </h1>
 
-              <p>{item.description}</p>
-            </div>
-          ))}
-        </div>
-      </Link>
+            <p className="text-xl text-gray">{item.detail}</p>
+          </div>
+        ))}
+      </div>
     </>
   );
 }
