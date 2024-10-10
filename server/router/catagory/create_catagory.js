@@ -40,9 +40,10 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
     const { name, description, detail } = req.body;
+    const photo = req.file ? req.file.path : null;
+    console.log(photo);
 
     const newCategory = new Category({ name, description, photo, detail });
-    console.log(newCategory);
 
     try {
       await newCategory.save();
