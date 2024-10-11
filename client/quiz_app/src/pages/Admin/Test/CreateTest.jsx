@@ -14,7 +14,7 @@ const CreateTest = () => {
       key: "selection",
     },
   ]);
-  const [exam, setExams] = useState([]);
+  const [exam, setExam] = useState([]);
   const [formData, setFormData] = useState({
     category: "",
     exam: "",
@@ -42,7 +42,12 @@ const CreateTest = () => {
       const fetchExamsbyCategory = async () => {
         try {
           const res = await axios.get(`/api/exams/category/${id}`);
-          setExams(res.data); // Set exams based on selected category
+          if (res.data.length === 0) {
+            setExam([]);
+          } else {
+            setExam(res.data);
+          }
+          console.log(exam); // Set exams based on selected category
         } catch (error) {
           console.error("Error fetching exams:", error);
         }
@@ -61,68 +66,103 @@ const CreateTest = () => {
     }));
   };
 
-  const handleSubmit = () => {
-    // Submit logic here
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const myArray = formData.allowedStudents.split(",");
+    const dataToSend = {
+      ...formData,
+      from: state[0].startDate,
+      to: state[0].endDate,
+      allowedStudents: myArray,
+    };
+    try {
+      const res = await axios.post("/api/test", dataToSend);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
-    <div>
-      <label className="block text-lg font-medium text-gray-700">
-        Category
-      </label>
-      <select
-        name="category"
-        onChange={handleChange}
-        value={formData.category}
-        className="p-2 mt-1 border border-gray-300 rounded-lg w-[30%]"
-      >
-        <option value="" disabled>
-          Select a category
-        </option>
-        {categories.map((category, i) => (
-          <option key={i} value={category.name}>
-            {category.name}
-          </option>
-        ))}
-      </select>
-      <label className="block text-lg font-medium text-gray-700">Exam</label>
-      <select
-        name="exam"
-        onChange={handleChange}
-        className="p-2 mt-1 border border-gray-300 rounded-lg w-[30%]"
-      >
-        <option value="" disabled>
-          Select exam
-        </option>
-        {exam.map((item, i) => (
-          <option key={i} value={item.name}>
-            {item.name}
-          </option>
-        ))}
-      </select>
+    <form onSubmit={handleSubmit}>
       <div>
         <label className="block text-lg font-medium text-gray-700">
-          Allotted Time
+          Category
         </label>
-        <input
-          type="number"
-          name="allottedTime"
-          value={formData.allottedTime}
+        <select
+          name="category"
           onChange={handleChange}
-          className="block p-2 mt-1 border border-gray-300 rounded-md"
+          value={formData.category}
+          className="p-2 mt-1 border border-gray-300 rounded-lg w-[30%]"
+        >
+          <option value="" disabled>
+            Select a category
+          </option>
+          {categories.map((category, i) => (
+            <option key={i} value={category.name}>
+              {category.name}
+            </option>
+          ))}
+        </select>
+        <label className="block mt-4 text-lg font-medium text-gray-700">
+          Exam
+        </label>
+        <select
+          name="exam"
+          onChange={handleChange}
+          className="p-2 mt-1 border border-gray-300 rounded-lg w-[30%]"
+        >
+          <option value="" disabled>
+            Select exam
+          </option>
+          {exam.map((item, i) => (
+            <option key={i} value={item.name}>
+              {item.name}
+            </option>
+          ))}
+        </select>
+        <div className="mt-4">
+          <label className="block text-lg font-medium text-gray-700">
+            Allotted Time
+          </label>
+          <input
+            type="number"
+            name="allottedTime"
+            value={formData.allottedTime}
+            onChange={handleChange}
+            className="block p-2 mt-1 border border-gray-300 rounded-md"
+          />
+        </div>
+        <div className="mt-4">
+          <label className="block text-lg font-medium text-gray-700">
+            Allowed Students email
+          </label>
+          <input
+            type="text"
+            name="allowedStudents"
+            value={formData.allowedStudents}
+            onChange={handleChange}
+            className="block p-2 mt-1 border border-gray-300 rounded-md"
+          />
+        </div>
+        <DateRangePicker
+          onChange={(item) => setState([item.selection])}
+          showSelectionPreview={true}
+          moveRangeOnFirstSelection={false}
+          months={2}
+          ranges={state}
+          direction="horizontal"
+          className="my-6 border rounded-sm shadow-lg"
         />
-      </div>
 
-      <DateRangePicker
-        onChange={(item) => setState([item.selection])}
-        showSelectionPreview={true}
-        moveRangeOnFirstSelection={false}
-        months={2}
-        ranges={state}
-        direction="horizontal"
-        className="my-6 border rounded-sm shadow-lg"
-      />
-    </div>
+        <button
+          type="submit"
+          className="px-6 py-2 mt-6 font-semibold text-white bg-teal-800 rounded-lg hover:bg-teal-900"
+        >
+          Submit Test
+        </button>
+      </div>
+    </form>
   );
 };
 
