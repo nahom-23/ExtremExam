@@ -21,9 +21,7 @@ router.get("/api/exams/category/:categoryId", async (req, res) => {
     const filteredExams = exams.filter((exam) => exam.questions.length > 0);
 
     if (filteredExams.length === 0) {
-      return res
-        .status(404)
-        .json({ message: "No exams found for this category" });
+      return res.status(200).json([]);
     }
 
     res.status(200).json(filteredExams);
