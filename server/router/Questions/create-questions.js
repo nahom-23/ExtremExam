@@ -25,10 +25,9 @@ router.post("/api/questions", async (req, res) => {
       question,
       category: user._id,
     });
-
     exam.questions.push(newQuestions._id);
-    console.log(exam);
     await exam.save();
+
     let post = await newQuestions.save();
     post = await post.populate("category");
     res.status(201).json(post);
