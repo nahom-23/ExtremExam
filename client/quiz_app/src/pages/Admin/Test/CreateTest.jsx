@@ -5,8 +5,10 @@ import { addDays } from "date-fns";
 import { DateRangePicker } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
+import TestList from "../../../component/TestList";
 
 const CreateTest = () => {
+  const [open, setOpen] = useState(true);
   const [state, setState] = useState([
     {
       startDate: new Date(),
@@ -78,91 +80,108 @@ const CreateTest = () => {
     };
     try {
       const res = await axios.post("/api/test", dataToSend);
+      setOpen(!open);
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label className="block text-lg font-medium text-gray-700">
-          Category
-        </label>
-        <select
-          name="category"
-          onChange={handleChange}
-          value={formData.category}
-          className="p-2 mt-1 border border-gray-300 rounded-lg w-[30%]"
-        >
-          <option value="" disabled>
-            Select a category
-          </option>
-          {categories.map((category, i) => (
-            <option key={i} value={category.name}>
-              {category.name}
-            </option>
-          ))}
-        </select>
-        <label className="block mt-4 text-lg font-medium text-gray-700">
-          Exam
-        </label>
-        <select
-          name="exam"
-          onChange={handleChange}
-          className="p-2 mt-1 border border-gray-300 rounded-lg w-[30%]"
-        >
-          <option value="" disabled>
-            Select exam
-          </option>
-          {exam.map((item, i) => (
-            <option key={i} value={item.name}>
-              {item.name}
-            </option>
-          ))}
-        </select>
-        <div className="mt-4">
-          <label className="block text-lg font-medium text-gray-700">
-            Allotted Time
-          </label>
-          <input
-            type="number"
-            name="allottedTime"
-            value={formData.allottedTime}
-            onChange={handleChange}
-            className="block p-2 mt-1 border border-gray-300 rounded-md"
-          />
+    <>
+      {open ? (
+        <div>
+          <button
+            type="submit"
+            className="px-6 py-2 my-6 font-semibold text-white bg-teal-900 rounded-lg hover:bg-teal-800"
+            onClick={() => setOpen(!open)}
+          >
+            Create Test
+          </button>
+          <TestList />
         </div>
-        <div className="mt-4">
-          <label className="block text-lg font-medium text-gray-700">
-            Allowed Students email
-          </label>
-          <input
-            type="text"
-            name="allowedStudents"
-            value={formData.allowedStudents}
-            onChange={handleChange}
-            className="block p-2 mt-1 border border-gray-300 rounded-md"
-          />
-        </div>
-        <DateRangePicker
-          onChange={(item) => setState([item.selection])}
-          showSelectionPreview={true}
-          moveRangeOnFirstSelection={false}
-          months={2}
-          ranges={state}
-          direction="horizontal"
-          className="my-6 border rounded-sm shadow-lg"
-        />
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label className="block text-lg font-medium text-gray-700">
+              Category
+            </label>
+            <select
+              name="category"
+              onChange={handleChange}
+              value={formData.category}
+              className="p-2 mt-1 border border-gray-300 rounded-lg w-[30%]"
+            >
+              <option value="" disabled>
+                Select a category
+              </option>
+              {categories.map((category, i) => (
+                <option key={i} value={category.name}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+            <label className="block mt-4 text-lg font-medium text-gray-700">
+              Exam
+            </label>
+            <select
+              name="exam"
+              value={formData.exam}
+              onChange={handleChange}
+              className="p-2 mt-1 border border-gray-300 rounded-lg w-[30%]"
+            >
+              <option value="" disabled>
+                Select exam
+              </option>
+              {exam.map((item, i) => (
+                <option key={i} value={item.name}>
+                  {item.name}
+                </option>
+              ))}
+            </select>
+            <div className="mt-4">
+              <label className="block text-lg font-medium text-gray-700">
+                Allotted Time
+              </label>
+              <input
+                type="number"
+                name="allottedTime"
+                value={formData.allottedTime}
+                onChange={handleChange}
+                className="block p-2 mt-1 border border-gray-300 rounded-md"
+              />
+            </div>
+            <div className="mt-4">
+              <label className="block text-lg font-medium text-gray-700">
+                Allowed Students email
+              </label>
+              <input
+                type="text"
+                name="allowedStudents"
+                value={formData.allowedStudents}
+                onChange={handleChange}
+                className="block p-2 mt-1 border border-gray-300 rounded-md"
+              />
+            </div>
+            <DateRangePicker
+              onChange={(item) => setState([item.selection])}
+              showSelectionPreview={true}
+              moveRangeOnFirstSelection={false}
+              months={2}
+              ranges={state}
+              direction="horizontal"
+              className="my-6 border rounded-sm shadow-lg"
+            />
 
-        <button
-          type="submit"
-          className="px-6 py-2 mt-6 font-semibold text-white bg-teal-800 rounded-lg hover:bg-teal-900"
-        >
-          Submit Test
-        </button>
-      </div>
-    </form>
+            <button
+              type="submit"
+              className="px-6 py-2 mt-6 font-semibold text-white bg-teal-800 rounded-lg hover:bg-teal-900"
+            >
+              Submit Test
+            </button>
+          </div>
+        </form>
+      )}
+    </>
   );
 };
 
