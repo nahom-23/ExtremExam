@@ -24,7 +24,7 @@ function Testcard() {
           >
             <img
               src={item.photo}
-              className="w-[120px] h-[120px] rounded-full mb-4"
+              className="w-[100px] h-[100px] rounded-full mb-4 object-center object-contain"
               alt="category image"
             />
             <h1 className="mb-1 ml-2 text-2xl font-bold text-green">

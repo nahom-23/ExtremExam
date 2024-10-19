@@ -2,8 +2,10 @@ import React from "react";
 import Register from "./Register";
 import Hero from "../assets/Hero.png";
 import { useAuthContext } from "../hooks/useAuthContext";
+
 export default function HeroSection() {
   const { user } = useAuthContext();
+
   return (
     <div className="mx-auto md:max-w-6xl">
       <div className="flex flex-col items-center md:flex-row">
