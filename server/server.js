@@ -12,6 +12,7 @@ const creatCatagory = require("./router/catagory/create_catagory");
 const getAllCatagory = require("./router/catagory/getallcatagory");
 
 const creatquestions = require("./router/Questions/create-questions");
+const getAllQuestions = require("./router/Questions/getAllQuestions");
 
 // exam routes
 const getallexams = require("./router/Exam/getexamsbycategory");
@@ -48,6 +49,7 @@ app.use(creatCatagory);
 app.use(getAllCatagory);
 
 app.use(creatquestions);
+app.use(getAllQuestions);
 // exam route
 app.use(getallexams);
 app.use(getexams);

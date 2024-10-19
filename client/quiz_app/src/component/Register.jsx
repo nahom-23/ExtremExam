@@ -7,12 +7,14 @@ function Register({ buttonTitle, buttonStyle, buttonClassName }) {
 
   return (
     <>
-      <button
-        className={`${defaultButtonClasses} ${buttonClassName} `}
-        style={buttonStyle}
-      >
-        <Link to="/signup"> {buttonTitle} </Link>
-      </button>
+      <Link to="/signup">
+        <button
+          className={`${defaultButtonClasses} ${buttonClassName} `}
+          style={buttonStyle}
+        >
+          {buttonTitle}
+        </button>
+      </Link>
     </>
   );
 }

@@ -6,7 +6,7 @@ function Footer() {
   return (
     <>
       <div className="pt-10 text-white bg-green">
-        <div className="flex justify-between max-w-6xl gap-8 py-6 mx-auto mt-4">
+        <div className="flex flex-wrap justify-between max-w-6xl gap-8 py-6 mx-auto mt-4">
           <div>
             <img src={logo} alt="logo image" className="w-56"></img>
           </div>
