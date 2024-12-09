@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import Register from "./Register";
@@ -8,6 +8,11 @@ import { useLogout } from "../hooks/useLogout";
 export default function Header() {
   const { user } = useAuthContext();
   const { logout } = useLogout();
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   return (
     <header className="bg-white shadow-md">
@@ -53,7 +58,7 @@ export default function Header() {
         {/* Hamburger menu for mobile */}
         <div className="block md:hidden">
           <button
-            id="menu-toggle"
+            onClick={toggleMobileMenu}
             className="p-2 text-gray-500 transition rounded focus:outline-none hover:bg-gray-100"
           >
             <svg
@@ -75,7 +80,11 @@ export default function Header() {
       </div>
 
       {/* Mobile Menu */}
-      <div id="mobile-menu" className="hidden md:hidden px-4 pb-4">
+      <div
+        className={`${
+          isMobileMenuOpen ? "block" : "hidden"
+        } md:hidden px-4 pb-4 transition-all ease-in-out`}
+      >
         <nav className="flex flex-col space-y-4">
           <Link to="/" className="font-medium text-header hover:text-green">
             About
